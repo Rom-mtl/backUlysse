@@ -1,6 +1,6 @@
-// const thingsRoutes = require('./things');
+const gladiatorsRouter = require('./gladiators');
 
-// eslint-disable-next-line
 module.exports = (app) => {
   // app.use('/things', thingsRoutes);
+  app.use('/gladiators', gladiatorsRouter);
 };
