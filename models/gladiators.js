@@ -28,4 +28,16 @@ const createGlad = async (newGlad) => {
   return null;
 };
 
-module.exports = { findAll, createGlad };
+const deletteGlad = async (idGlad) => {
+  const result = await db
+    .query('DELETE FROM gladiators WHERE id = ?', [idGlad])
+    .catch((err) => console.log(err));
+  if (result) {
+    return {
+      name: result.name,
+    };
+  }
+  return null;
+};
+
+module.exports = { findAll, createGlad, deletteGlad };

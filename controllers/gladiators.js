@@ -1,4 +1,4 @@
-const { findAll, createGlad } = require('../models/gladiators');
+const { findAll, createGlad, deletteGlad } = require('../models/gladiators');
 
 const getAllGladiators = async (req, res) => {
   const data = await findAll();
@@ -9,12 +9,20 @@ const getAllGladiators = async (req, res) => {
 };
 
 const addNewGladiator = async (req, res) => {
-  const data = await createGlad(req.body.newGladiators);
-  console.log(data);
+  const data = await createGlad(req.body.data);
+
   if (data) {
-    return res.status(200).send(data);
+    return res.status(201).send(data);
   }
   return res.status(500).send('Something went wrong');
 };
 
-module.exports = { getAllGladiators, addNewGladiator };
+const deletteGladiator = async (req, res) => {
+  const data = await deletteGlad(req.body.data);
+  if (data) {
+    return res.status(200).send('Gladiator delette with success');
+  }
+  return res.status(500).send('Something went wrong');
+};
+
+module.exports = { getAllGladiators, addNewGladiator, deletteGladiator };
