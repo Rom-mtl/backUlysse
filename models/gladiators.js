@@ -40,4 +40,18 @@ const deletteGlad = async (idGlad) => {
   return null;
 };
 
-module.exports = { findAll, createGlad, deletteGlad };
+const updateGlad = async (idGlad, data) => {
+  const { name, picture, victoires, arme, popularity, id } = data;
+  const result = await db.query(
+    'UPDATE gladiators SET name = ?, picture = ?, victories = ?, arme = ?, popularity = ? WHERE id = ?',
+    [name, picture, victoires, arme, popularity, id]
+  );
+  if (result) {
+    return {
+      name: result.name,
+    };
+  }
+  return null;
+};
+
+module.exports = { findAll, createGlad, deletteGlad, updateGlad };
